@@ -6,8 +6,13 @@ import {
     OneToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
+    OneToMany,
+    ManyToMany,
+    JoinTable,
 } from 'typeorm';
 import { Car } from 'src/car/car.entity';
+import { Task } from './task.entity';
+import { Meeting } from './meeting.entity';
 
 @Entity()
 export class User {
@@ -32,4 +37,14 @@ export class User {
 
     @UpdateDateColumn()
     updatedAt: Date;
+
+    @Column({ nullable: true })
+    carId: number;
+
+    @OneToMany(() => Task, (task) => task.user, { nullable: true })
+    task: Task[]
+
+    @ManyToMany(() => Meeting, (meetings) => meetings.user)
+    @JoinTable()
+    meetings: Meeting[]
 }
