@@ -9,10 +9,17 @@ import { ContentsModule } from './contents/contents.module';
 import { ResponsesModule } from './responses/responses.module';
 import { CompleteModule } from './complete/complete.module';
 import ormconfig from './ormconfig';
+import { APP_FILTER } from '@nestjs/core';
+import { GlobalExceptionFilter } from './exception/exception.filter';
 
 @Module({
   imports: [TypeOrmModule.forRoot(ormconfig), UserModule, ServeysModule, OptionsModule, ContentsModule, ResponsesModule, CompleteModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService,
+    {
+      provide: APP_FILTER,
+      useClass: GlobalExceptionFilter,
+    },
+  ],
 })
 export class AppModule { }
