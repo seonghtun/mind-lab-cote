@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Contents } from "src/contents/contents.entity";
+import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable } from "typeorm";
 
 @Entity()
 export class Serveys {
@@ -14,11 +15,13 @@ export class Serveys {
     @Column()
     registrant: string
 
+    @ManyToMany(() => Contents, (contents) => contents.serveys)
+    @JoinTable()
+    contents: Contents[]
+
     @CreateDateColumn()
     createdAt: Date;
 
     @UpdateDateColumn()
     updateAt: Date;
-
-
 }

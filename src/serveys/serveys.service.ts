@@ -10,11 +10,11 @@ export class ServeysService {
         private serveysRepository: Repository<Serveys>
     ) { }
 
-    Hello() {
-        return 'Hello World!'
-    }
-
     getAllServeys() {
         return this.serveysRepository.find();
+    }
+
+    async getById(id: number): Promise<Serveys> {
+        const servey = await this.serveysRepository.findOneBy({ id: id });
     }
 }
