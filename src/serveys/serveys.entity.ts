@@ -1,3 +1,4 @@
+import { Completes } from "src/complete/complete.entity";
 import { Contents } from "src/contents/contents.entity";
 import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable } from "typeorm";
 
@@ -7,7 +8,7 @@ export class Serveys {
     id: number
 
     @Column()
-    name: string
+    title: string
 
     @Column()
     description: string
@@ -18,6 +19,10 @@ export class Serveys {
     @ManyToMany(() => Contents, (contents) => contents.serveys)
     @JoinTable()
     contents: Contents[]
+
+    @ManyToMany(() => Completes, (completes) => completes.serveys)
+    @JoinTable()
+    completes: Completes[]
 
     @CreateDateColumn()
     createdAt: Date;
