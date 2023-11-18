@@ -2,7 +2,8 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Serveys } from './serveys.entity';
 import { Repository } from 'typeorm';
-import { createServeyDto } from './create-servey.dto';
+import { createServeyDto } from './dto/create-servey.dto';
+import { updateServeyDto } from './dto/update-servey.dto';
 
 @Injectable()
 export class ServeysService {
@@ -29,18 +30,7 @@ export class ServeysService {
         return this.serveysRepository.delete(id);
     }
 
-    // async updateCarById(id: number, carId: Car) {
-    //     try {
-    //         const car = await this.carRepository.findOne({ where: { id: carId.id } });
-    //         console.log(car);
-    //         if (!car)
-    //             throw new NotFoundException(`car not found with the id ${carId}`);
-    //         const user = await this.userRepository.findOne({ where: { id: id } });
-    //         user.car = car;
-    //         console.log(user);
-    //         return await this.userRepository.save(user);
-    //     } catch (err) {
-    //         console.error(err)
-    //     }
-    // }
+    async updateById(id: number, serveyData: updateServeyDto) {
+        await this.serveysRepository.update(id, serveyData)
+    }
 }

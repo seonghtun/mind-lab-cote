@@ -1,5 +1,5 @@
 import { IsString, IsOptional } from "class-validator";
-// import { Contents } from "src/contents/contents.entity";
+import { Contents } from "src/contents/contents.entity";
 
 export class createServeyDto {
     @IsString()
@@ -11,6 +11,6 @@ export class createServeyDto {
     @IsString()
     readonly registrant: string
 
-    // @IsOptional()
-    // readonly contents: Contents
+    @IsOptional()
+    readonly contents: Contents[]
 }

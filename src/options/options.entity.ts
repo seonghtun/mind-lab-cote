@@ -13,6 +13,9 @@ export class Options {
     @Column()
     point: number;
 
+    @Column()
+    order: number;
+
     @ManyToOne(() => Contents, (content) => content.option, { onDelete: 'SET NULL' })
     content: Contents
 

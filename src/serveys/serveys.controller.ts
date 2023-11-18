@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { ServeysService } from './serveys.service';
-import { createServeyDto } from './create-servey.dto';
+import { createServeyDto } from './dto/create-servey.dto';
+import { updateServeyDto } from './dto/update-servey.dto';
 
 @Controller('servey')
 export class ServeysController {
@@ -13,13 +14,23 @@ export class ServeysController {
         return this.serveysService.getAllServeys()
     }
 
+    @Get(':id')
+    getServeyById(@Param('id') id: number) {
+        return this.serveysService.getServeyById(id)
+    }
+
     @Post()
-    createUser(@Body() serveyData: createServeyDto) {
+    createServey(@Body() serveyData: createServeyDto) {
         return this.serveysService.createServey(serveyData)
     }
 
     @Delete(':id')
-    deleteteUser(@Param('id') id: number) {
+    deleteServey(@Param('id') id: number) {
         return this.serveysService.deleteServey(id)
+    }
+
+    @Patch(':id')
+    updateServey(@Param('id') id: number, @Body() serveyData: updateServeyDto) {
+        this.serveysService.updateById(id, serveyData)
     }
 }

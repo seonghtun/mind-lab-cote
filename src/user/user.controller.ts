@@ -40,6 +40,7 @@ export class UserController {
 
     @Patch(':id')
     updateCarById(@Param('id') id: number, @Body() userData: updateUserDto) {
+        console.log(userData)
         const { car: carId } = userData;
         return this.userService.updateCarById(id, carId);
     }

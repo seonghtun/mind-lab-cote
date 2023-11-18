@@ -10,7 +10,8 @@ const ormconfig: TypeOrmModuleOptions = {
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    logging: true,
+    logging: ['query', 'error'],
+    logger: 'file',
     entities: [__dirname + '/**/*.entity{.ts,.js}'],
 
     // TypeOrm 자동 동기화, migration 작업을 위해 중지
