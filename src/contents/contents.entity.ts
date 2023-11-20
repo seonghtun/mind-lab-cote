@@ -14,12 +14,18 @@ export class Contents {
     @Column()
     type: string
 
-    @OneToMany(() => Options, (options) => options.content, { nullable: true })
+    @OneToMany(() => Options, (options) => options.content, {
+        cascade: true
+    })
     option: Options[]
 
-    @ManyToMany(() => Responses, (responses) => responses.contents, { nullable: true })
+    @ManyToMany(() => Responses, (responses) => responses.contents, {
+        cascade: true
+    })
     responses: Responses[]
 
-    @ManyToMany(() => Serveys, (serveys) => serveys.contents)
+    @ManyToMany(() => Serveys, (serveys) => serveys.contents, {
+        onDelete: "SET NULL"
+    })
     serveys: Serveys[]
 }

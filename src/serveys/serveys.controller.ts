@@ -30,7 +30,13 @@ export class ServeysController {
     }
 
     @Patch(':id')
-    updateServey(@Param('id') id: number, @Body() serveyData: updateServeyDto) {
-        this.serveysService.updateById(id, serveyData)
+    updateServey(@Param('id') id: number, @Body() body) {
+        const { contentId } = body
+        this.serveysService.updateServeyById(id, contentId)
+    }
+
+    @Patch(':id')
+    updateContentById(@Param('id') id: number, @Body() serveyData: updateServeyDto) {
+        this.serveysService.updateServeyById(id, serveyData)
     }
 }

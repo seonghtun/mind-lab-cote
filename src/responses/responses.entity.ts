@@ -11,13 +11,13 @@ export class Responses {
     @Column()
     respondent: string;
 
-    @ManyToMany(() => Options, (options) => options.responses, { onDelete: 'SET NULL' })
+    @ManyToMany(() => Options, (options) => options.responses, { onDelete: 'CASCADE' })
     options: Options[]
 
-    @ManyToMany(() => Contents, (contents) => contents.responses, { onDelete: 'SET NULL' })
+    @ManyToMany(() => Contents, (contents) => contents.responses, { onDelete: 'CASCADE' })
     contents: Contents[]
 
-    @ManyToMany(() => Serveys, (serveys) => serveys.responses, { onDelete: 'SET NULL' })
+    @ManyToMany(() => Serveys, (serveys) => serveys.responses, { onDelete: 'CASCADE' })
     serveys: Serveys[]
 
     @CreateDateColumn()

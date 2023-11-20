@@ -1,16 +1,22 @@
-import { IsString, IsOptional } from "class-validator";
+import { ArgsType, Field, Int } from "@nestjs/graphql";
+import { IsInt, IsOptional, IsString } from "class-validator";
 import { Contents } from "src/contents/contents.entity";
 
+@ArgsType()
 export class createServeyDto {
+    @Field(() => String)
     @IsString()
-    readonly title: string
+    title: string
 
+    @Field(() => String)
     @IsString()
-    readonly description: string
+    description: string
 
+    @Field(() => String)
     @IsString()
-    readonly registrant: string
+    registrant: string
 
+    @Field(() => [Contents])
     @IsOptional()
-    readonly contents: Contents[]
+    contents: Contents[]
 }

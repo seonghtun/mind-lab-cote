@@ -16,10 +16,12 @@ export class Options {
     @Column()
     order: number;
 
-    @ManyToOne(() => Contents, (content) => content.option, { onDelete: 'SET NULL' })
+    @ManyToOne(() => Contents, (content) => content.option, { onDelete: "CASCADE" })
     content: Contents
 
-    @ManyToMany(() => Responses, (responses) => responses.options)
+    @ManyToMany(() => Responses, (responses) => responses.options, {
+        cascade: true
+    })
     @JoinTable()
     responses: Responses[]
 }
